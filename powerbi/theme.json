@@ -1,0 +1,24 @@
+{
+  "name": "SupplyScope Forest and Sand",
+  "dataColors": [
+    "#26704D",
+    "#D49B55",
+    "#6E8B77",
+    "#AEBE9F",
+    "#765B3D",
+    "#294D46"
+  ],
+  "background": "#F4F6F4",
+  "foreground": "#203B34",
+  "tableAccent": "#26704D",
+  "textClasses": {
+    "title": {
+      "fontFace": "Segoe UI",
+      "fontSize": 18
+    },
+    "label": {
+      "fontFace": "Segoe UI",
+      "fontSize": 11
+    }
+  }
+}

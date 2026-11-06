@@ -1,0 +1,9 @@
+status,orders,missing_promise,missing_actual
+delivered,96290,0,8
+shipped,1106,0,1106
+canceled,625,0,619
+unavailable,609,0,609
+invoiced,314,0,314
+processing,301,0,301
+created,5,0,5
+approved,2,0,2

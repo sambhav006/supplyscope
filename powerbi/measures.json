@@ -1,0 +1,146 @@
+{
+  "Orders": {
+    "expression": "VAR SellerOrders = VALUES(bridge_order_seller[order_id])\nVAR CategoryOrders = VALUES(bridge_order_category[order_id])\nVAR Scope = FILTER(fact_order,\n (NOT ISFILTERED(dim_seller) || fact_order[order_id] IN SellerOrders) &&\n (NOT ISFILTERED(dim_category) || fact_order[order_id] IN CategoryOrders))\nRETURN COALESCE(COUNTROWS(Scope),0)",
+    "description": "Accepted orders, distinct order grain; cancellation denominator."
+  },
+  "Eligible": {
+    "expression": "VAR SellerOrders = VALUES(bridge_order_seller[order_id])\nVAR CategoryOrders = VALUES(bridge_order_category[order_id])\nVAR Scope = FILTER(fact_order,\n (NOT ISFILTERED(dim_seller) || fact_order[order_id] IN SellerOrders) &&\n (NOT ISFILTERED(dim_category) || fact_order[order_id] IN CategoryOrders))\nRETURN COALESCE(COUNTROWS(FILTER(Scope,fact_order[eligible])),0)",
+    "description": "Delivered with valid actual and promised dates."
+  },
+  "On Time": {
+    "expression": "VAR SellerOrders = VALUES(bridge_order_seller[order_id])\nVAR CategoryOrders = VALUES(bridge_order_category[order_id])\nVAR Scope = FILTER(fact_order,\n (NOT ISFILTERED(dim_seller) || fact_order[order_id] IN SellerOrders) &&\n (NOT ISFILTERED(dim_category) || fact_order[order_id] IN CategoryOrders))\nRETURN COALESCE(COUNTROWS(FILTER(Scope,fact_order[on_time])),0)",
+    "description": "Actual calendar date <= promise calendar date."
+  },
+  "Late": {
+    "expression": "VAR SellerOrders = VALUES(bridge_order_seller[order_id])\nVAR CategoryOrders = VALUES(bridge_order_category[order_id])\nVAR Scope = FILTER(fact_order,\n (NOT ISFILTERED(dim_seller) || fact_order[order_id] IN SellerOrders) &&\n (NOT ISFILTERED(dim_category) || fact_order[order_id] IN CategoryOrders))\nRETURN COALESCE(COUNTROWS(FILTER(Scope,fact_order[late])),0)",
+    "description": "Actual calendar date > promise calendar date."
+  },
+  "On Time Rate": {
+    "expression": "DIVIDE([On Time],[Eligible])",
+    "description": "Same denominator as late rate."
+  },
+  "Late Rate": {
+    "expression": "DIVIDE([Late],[Eligible])",
+    "description": "Eligible delivered late fraction."
+  },
+  "Delivered": {
+    "expression": "VAR SellerOrders = VALUES(bridge_order_seller[order_id])\nVAR CategoryOrders = VALUES(bridge_order_category[order_id])\nVAR Scope = FILTER(fact_order,\n (NOT ISFILTERED(dim_seller) || fact_order[order_id] IN SellerOrders) &&\n (NOT ISFILTERED(dim_category) || fact_order[order_id] IN CategoryOrders))\nRETURN COALESCE(COUNTROWS(FILTER(Scope,fact_order[status]=\"delivered\")),0)",
+    "description": "Delivered including unscorable."
+  },
+  "Delivered Unscorable": {
+    "expression": "VAR SellerOrders = VALUES(bridge_order_seller[order_id])\nVAR CategoryOrders = VALUES(bridge_order_category[order_id])\nVAR Scope = FILTER(fact_order,\n (NOT ISFILTERED(dim_seller) || fact_order[order_id] IN SellerOrders) &&\n (NOT ISFILTERED(dim_category) || fact_order[order_id] IN CategoryOrders))\nRETURN COALESCE(COUNTROWS(FILTER(Scope,fact_order[status]=\"delivered\" && NOT fact_order[eligible])),0)",
+    "description": "Delivered excluded from rate."
+  },
+  "Delivered Missing Promise": {
+    "expression": "VAR SellerOrders = VALUES(bridge_order_seller[order_id])\nVAR CategoryOrders = VALUES(bridge_order_category[order_id])\nVAR Scope = FILTER(fact_order,\n (NOT ISFILTERED(dim_seller) || fact_order[order_id] IN SellerOrders) &&\n (NOT ISFILTERED(dim_category) || fact_order[order_id] IN CategoryOrders))\nRETURN COALESCE(COUNTROWS(FILTER(Scope,fact_order[status]=\"delivered\" && ISBLANK(fact_order[promise_at]))),0)",
+    "description": "May overlap missing actual."
+  },
+  "Delivered Missing Actual": {
+    "expression": "VAR SellerOrders = VALUES(bridge_order_seller[order_id])\nVAR CategoryOrders = VALUES(bridge_order_category[order_id])\nVAR Scope = FILTER(fact_order,\n (NOT ISFILTERED(dim_seller) || fact_order[order_id] IN SellerOrders) &&\n (NOT ISFILTERED(dim_category) || fact_order[order_id] IN CategoryOrders))\nRETURN COALESCE(COUNTROWS(FILTER(Scope,fact_order[status]=\"delivered\" && ISBLANK(fact_order[delivered_at]))),0)",
+    "description": "May overlap missing promise."
+  },
+  "Canceled": {
+    "expression": "VAR SellerOrders = VALUES(bridge_order_seller[order_id])\nVAR CategoryOrders = VALUES(bridge_order_category[order_id])\nVAR Scope = FILTER(fact_order,\n (NOT ISFILTERED(dim_seller) || fact_order[order_id] IN SellerOrders) &&\n (NOT ISFILTERED(dim_category) || fact_order[order_id] IN CategoryOrders))\nRETURN COALESCE(COUNTROWS(FILTER(Scope,fact_order[status]=\"canceled\")),0)",
+    "description": "Canceled status, not unavailable."
+  },
+  "Cancellation Rate": {
+    "expression": "DIVIDE([Canceled],[Orders])",
+    "description": "Canceled / accepted orders in cohort."
+  },
+  "Median Delivery Days": {
+    "expression": "VAR SellerOrders = VALUES(bridge_order_seller[order_id])\nVAR CategoryOrders = VALUES(bridge_order_category[order_id])\nVAR Scope = FILTER(fact_order,\n (NOT ISFILTERED(dim_seller) || fact_order[order_id] IN SellerOrders) &&\n (NOT ISFILTERED(dim_category) || fact_order[order_id] IN CategoryOrders))\nRETURN MEDIANX(FILTER(Scope,NOT ISBLANK(fact_order[delivery_days])),fact_order[delivery_days])",
+    "description": "Late delay uses late only; promise comparisons use eligible; blanks excluded."
+  },
+  "P90 Delivery Days": {
+    "expression": "VAR SellerOrders = VALUES(bridge_order_seller[order_id])\nVAR CategoryOrders = VALUES(bridge_order_category[order_id])\nVAR Scope = FILTER(fact_order,\n (NOT ISFILTERED(dim_seller) || fact_order[order_id] IN SellerOrders) &&\n (NOT ISFILTERED(dim_category) || fact_order[order_id] IN CategoryOrders))\nRETURN PERCENTILEX.INC(FILTER(Scope,NOT ISBLANK(fact_order[delivery_days])),fact_order[delivery_days],0.9)",
+    "description": "Inclusive interpolated percentile, matching quantile_cont."
+  },
+  "Median Delay Days": {
+    "expression": "VAR SellerOrders = VALUES(bridge_order_seller[order_id])\nVAR CategoryOrders = VALUES(bridge_order_category[order_id])\nVAR Scope = FILTER(fact_order,\n (NOT ISFILTERED(dim_seller) || fact_order[order_id] IN SellerOrders) &&\n (NOT ISFILTERED(dim_category) || fact_order[order_id] IN CategoryOrders))\nRETURN MEDIANX(FILTER(Scope,NOT ISBLANK(fact_order[delay_days]) && fact_order[late]),fact_order[delay_days])",
+    "description": "Late delay uses late only; promise comparisons use eligible; blanks excluded."
+  },
+  "P90 Delay Days": {
+    "expression": "VAR SellerOrders = VALUES(bridge_order_seller[order_id])\nVAR CategoryOrders = VALUES(bridge_order_category[order_id])\nVAR Scope = FILTER(fact_order,\n (NOT ISFILTERED(dim_seller) || fact_order[order_id] IN SellerOrders) &&\n (NOT ISFILTERED(dim_category) || fact_order[order_id] IN CategoryOrders))\nRETURN PERCENTILEX.INC(FILTER(Scope,NOT ISBLANK(fact_order[delay_days]) && fact_order[late]),fact_order[delay_days],0.9)",
+    "description": "Inclusive interpolated percentile, matching quantile_cont."
+  },
+  "Median Promised Days": {
+    "expression": "VAR SellerOrders = VALUES(bridge_order_seller[order_id])\nVAR CategoryOrders = VALUES(bridge_order_category[order_id])\nVAR Scope = FILTER(fact_order,\n (NOT ISFILTERED(dim_seller) || fact_order[order_id] IN SellerOrders) &&\n (NOT ISFILTERED(dim_category) || fact_order[order_id] IN CategoryOrders))\nRETURN MEDIANX(FILTER(Scope,NOT ISBLANK(fact_order[promised_days]) && fact_order[eligible]),fact_order[promised_days])",
+    "description": "Late delay uses late only; promise comparisons use eligible; blanks excluded."
+  },
+  "Median Actual Days": {
+    "expression": "VAR SellerOrders = VALUES(bridge_order_seller[order_id])\nVAR CategoryOrders = VALUES(bridge_order_category[order_id])\nVAR Scope = FILTER(fact_order,\n (NOT ISFILTERED(dim_seller) || fact_order[order_id] IN SellerOrders) &&\n (NOT ISFILTERED(dim_category) || fact_order[order_id] IN CategoryOrders))\nRETURN MEDIANX(FILTER(Scope,NOT ISBLANK(fact_order[delivery_days]) && fact_order[eligible]),fact_order[delivery_days])",
+    "description": "Late delay uses late only; promise comparisons use eligible; blanks excluded."
+  },
+  "Median Early Margin": {
+    "expression": "VAR SellerOrders = VALUES(bridge_order_seller[order_id])\nVAR CategoryOrders = VALUES(bridge_order_category[order_id])\nVAR Scope = FILTER(fact_order,\n (NOT ISFILTERED(dim_seller) || fact_order[order_id] IN SellerOrders) &&\n (NOT ISFILTERED(dim_category) || fact_order[order_id] IN CategoryOrders))\nRETURN MEDIANX(FILTER(Scope,NOT ISBLANK(fact_order[early_margin_days]) && fact_order[eligible]),fact_order[early_margin_days])",
+    "description": "Late delay uses late only; promise comparisons use eligible; blanks excluded."
+  },
+  "Median Dispatch Days": {
+    "expression": "VAR SellerOrders = VALUES(bridge_order_seller[order_id])\nVAR CategoryOrders = VALUES(bridge_order_category[order_id])\nVAR Scope = FILTER(fact_order,\n (NOT ISFILTERED(dim_seller) || fact_order[order_id] IN SellerOrders) &&\n (NOT ISFILTERED(dim_category) || fact_order[order_id] IN CategoryOrders))\nRETURN MEDIANX(FILTER(Scope,NOT ISBLANK(fact_order[dispatch_days])),fact_order[dispatch_days])",
+    "description": "Late delay uses late only; promise comparisons use eligible; blanks excluded."
+  },
+  "Median Post Dispatch Days": {
+    "expression": "VAR SellerOrders = VALUES(bridge_order_seller[order_id])\nVAR CategoryOrders = VALUES(bridge_order_category[order_id])\nVAR Scope = FILTER(fact_order,\n (NOT ISFILTERED(dim_seller) || fact_order[order_id] IN SellerOrders) &&\n (NOT ISFILTERED(dim_category) || fact_order[order_id] IN CategoryOrders))\nRETURN MEDIANX(FILTER(Scope,NOT ISBLANK(fact_order[post_dispatch_days])),fact_order[post_dispatch_days])",
+    "description": "Late delay uses late only; promise comparisons use eligible; blanks excluded."
+  },
+  "Freight per Order": {
+    "expression": "VAR SellerOrders = VALUES(bridge_order_seller[order_id])\nVAR CategoryOrders = VALUES(bridge_order_category[order_id])\nVAR Scope = FILTER(fact_order,\n (NOT ISFILTERED(dim_seller) || fact_order[order_id] IN SellerOrders) &&\n (NOT ISFILTERED(dim_category) || fact_order[order_id] IN CategoryOrders))\nRETURN AVERAGEX(FILTER(Scope,NOT ISBLANK(fact_order[freight_charged])),fact_order[freight_charged])",
+    "description": "BRL charged to customer, not logistics cost."
+  },
+  "Freight Known Orders": {
+    "expression": "VAR SellerOrders = VALUES(bridge_order_seller[order_id])\nVAR CategoryOrders = VALUES(bridge_order_category[order_id])\nVAR Scope = FILTER(fact_order,\n (NOT ISFILTERED(dim_seller) || fact_order[order_id] IN SellerOrders) &&\n (NOT ISFILTERED(dim_category) || fact_order[order_id] IN CategoryOrders))\nRETURN COALESCE(COUNTROWS(FILTER(Scope,NOT ISBLANK(fact_order[freight_charged]))),0)",
+    "description": "Freight average denominator."
+  },
+  "Total Late Days": {
+    "expression": "VAR SellerOrders = VALUES(bridge_order_seller[order_id])\nVAR CategoryOrders = VALUES(bridge_order_category[order_id])\nVAR Scope = FILTER(fact_order,\n (NOT ISFILTERED(dim_seller) || fact_order[order_id] IN SellerOrders) &&\n (NOT ISFILTERED(dim_category) || fact_order[order_id] IN CategoryOrders))\nRETURN SUMX(FILTER(Scope,fact_order[late]),fact_order[delay_days])",
+    "description": "Volume x severity priority, not money."
+  },
+  "Wilson Lower": {
+    "expression": "VAR N=[Eligible]\nVAR P=[On Time Rate]\nVAR Z=1.95996398454\nVAR Den=1+DIVIDE(Z*Z,N)\nVAR Mid=DIVIDE(P+DIVIDE(Z*Z,2*N),Den)\nVAR Half=DIVIDE(Z*SQRT(DIVIDE(P*(1-P),N)+DIVIDE(Z*Z,4*N*N)),Den)\nRETURN IF(N>0,Mid - Half)",
+    "description": "95% binomial Wilson interval; not selection-bias protection."
+  },
+  "Wilson Upper": {
+    "expression": "VAR N=[Eligible]\nVAR P=[On Time Rate]\nVAR Z=1.95996398454\nVAR Den=1+DIVIDE(Z*Z,N)\nVAR Mid=DIVIDE(P+DIVIDE(Z*Z,2*N),Den)\nVAR Half=DIVIDE(Z*SQRT(DIVIDE(P*(1-P),N)+DIVIDE(Z*Z,4*N*N)),Den)\nRETURN IF(N>0,Mid + Half)",
+    "description": "95% binomial Wilson interval; not selection-bias protection."
+  },
+  "Small Sample": {
+    "expression": "IF([Eligible]<SELECTEDVALUE(MinimumVolume[Value],30),\"Small sample\",\"Meets threshold\")",
+    "description": "Configurable minimum volume."
+  },
+  "On Time Rate Delivery Cohort": {
+    "expression": "CALCULATE([On Time Rate],USERELATIONSHIP(dim_date[date],fact_order[delivery_date]))",
+    "description": "Activates delivery date role."
+  },
+  "Seller Eligible": {
+    "expression": "CALCULATE([Eligible],KEEPFILTERS(fact_order[seller_count]=1))",
+    "description": "Single-seller scorecards."
+  },
+  "Seller On Time Rate": {
+    "expression": "CALCULATE([On Time Rate],KEEPFILTERS(fact_order[seller_count]=1))",
+    "description": "Avoid attribution to multi-seller orders."
+  },
+  "Scenario Affected Orders": {
+    "expression": "VAR Region=SELECTEDVALUE(ScenarioRegion[region])\nVAR Improvement=SELECTEDVALUE(Improvement[Value],0)/100\nRETURN IF(NOT ISBLANK(Region),CALCULATE([Late],KEEPFILTERS(TREATAS({Region},fact_order[region])))*Improvement)",
+    "description": "One disconnected region, intersects filters."
+  },
+  "Scenario On Time Rate": {
+    "expression": "IF(HASONEVALUE(ScenarioRegion[region]),DIVIDE([On Time]+[Scenario Affected Orders],[Eligible]))",
+    "description": "Scenario not prediction."
+  },
+  "Region Baseline Late Rate": {
+    "expression": "CALCULATE([Late Rate],ALLSELECTED(dim_geography[region]))",
+    "description": "Retains slicers, removes region row context."
+  },
+  "Region Late Share": {
+    "expression": "DIVIDE([Late],CALCULATE([Late],ALLSELECTED(dim_geography[region])))",
+    "description": "Non-overlapping destination contribution."
+  },
+  "Region Pareto Cumulative": {
+    "expression": "VAR CurrentLate=[Late]\nVAR Regions=ADDCOLUMNS(ALLSELECTED(dim_geography[region]),\"N\",[Late])\nRETURN DIVIDE(SUMX(FILTER(Regions,[N]>=CurrentLate),[N]),SUMX(Regions,[N]))",
+    "description": "Sort Late descending; ties share endpoint."
+  },
+  "Action Flag": {
+    "expression": "IF([Eligible]>=30 && [Late Rate]>[Region Baseline Late Rate],\"Investigate dispatch and promise calibration\",\"Monitor\")",
+    "description": "Sort Total Late Days descending; owner Regional operations lead."
+  }
+}

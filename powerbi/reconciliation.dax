@@ -1,0 +1,15 @@
+EVALUATE
+ROW(
+ "orders", [Orders],
+ "eligible", [Eligible],
+ "on_time_count", [On Time],
+ "late_count", [Late],
+ "on_time_rate", [On Time Rate],
+ "cancellation_rate", [Cancellation Rate],
+ "delivered_unscorable", [Delivered Unscorable],
+ "median_delivery_days", [Median Delivery Days],
+ "p90_delivery_days", [P90 Delivery Days],
+ "median_delay_days", [Median Delay Days],
+ "p90_delay_days", [P90 Delay Days],
+ "freight_per_order", [Freight per Order]
+)

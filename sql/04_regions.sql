@@ -1,0 +1,27 @@
+-- Accepted order grain; end-of-day promise; historical source-local times.
+SELECT region,-- Shared aggregate contract used by the API, reports and analytical SQL.
+count(*) AS orders,
+count(*) FILTER (WHERE eligible) AS eligible,
+count(*) FILTER (WHERE on_time) AS on_time_count,
+count(*) FILTER (WHERE late) AS late_count,
+count(*) FILTER (WHERE status='delivered') AS delivered,
+count(*) FILTER (WHERE status='delivered' AND NOT eligible) AS delivered_unscorable,
+count(*) FILTER (WHERE status='delivered' AND promise_at IS NULL) AS delivered_missing_promise,
+count(*) FILTER (WHERE status='delivered' AND delivered_at IS NULL) AS delivered_missing_actual,
+count(*) FILTER (WHERE status='canceled') AS canceled,
+count(*) FILTER (WHERE on_time)::DOUBLE/nullif(count(*) FILTER (WHERE eligible),0) AS on_time_rate,
+count(*) FILTER (WHERE late)::DOUBLE/nullif(count(*) FILTER (WHERE eligible),0) AS late_rate,
+count(*) FILTER (WHERE status='canceled')::DOUBLE/nullif(count(*),0) AS cancellation_rate,
+median(delivery_days) AS median_delivery_days,
+quantile_cont(delivery_days,0.9) AS p90_delivery_days,
+median(delay_days) FILTER (WHERE late) AS median_delay_days,
+quantile_cont(delay_days,0.9) FILTER (WHERE late) AS p90_delay_days,
+sum(delay_days) FILTER (WHERE late) AS total_delay_days,
+avg(freight_charged) AS freight_per_order,
+count(freight_charged) AS freight_known_orders,
+median(promised_days) FILTER (WHERE eligible) AS median_promised_days,
+median(delivery_days) FILTER (WHERE eligible) AS median_actual_days,
+median(early_margin_days) FILTER (WHERE eligible) AS median_early_margin,
+median(dispatch_days) AS median_dispatch_days,
+median(post_dispatch_days) AS median_post_dispatch_days
+ FROM fact_order GROUP BY 1 ORDER BY late_count DESC;

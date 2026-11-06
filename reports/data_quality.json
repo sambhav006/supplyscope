@@ -1,0 +1,173 @@
+{
+  "last_pipeline_run_utc": "2026-11-04T21:09:06.095938+00:00",
+  "coverage": {
+    "purchase_start": "2016-09-04 21:15:19",
+    "purchase_end": "2018-10-17 17:30:18",
+    "last_actual_delivery": "2018-10-17 13:22:46"
+  },
+  "quality": {
+    "customers": {
+      "raw": 99441,
+      "accepted": 99441,
+      "quarantined": 0,
+      "nulls": {
+        "customer_id": 0,
+        "customer_unique_id": 0,
+        "customer_zip_code_prefix": 0,
+        "customer_city": 0,
+        "customer_state": 0
+      },
+      "reasons": {}
+    },
+    "sellers": {
+      "raw": 3095,
+      "accepted": 3095,
+      "quarantined": 0,
+      "nulls": {
+        "seller_id": 0,
+        "seller_zip_code_prefix": 0,
+        "seller_city": 0,
+        "seller_state": 0
+      },
+      "reasons": {}
+    },
+    "products": {
+      "raw": 32951,
+      "accepted": 32951,
+      "quarantined": 0,
+      "nulls": {
+        "product_id": 0,
+        "product_category_name": 610
+      },
+      "reasons": {}
+    },
+    "orders": {
+      "raw": 99441,
+      "accepted": 99252,
+      "quarantined": 189,
+      "nulls": {
+        "order_id": 0,
+        "customer_id": 0,
+        "order_status": 0,
+        "order_purchase_timestamp": 0,
+        "order_approved_at": 160,
+        "order_delivered_carrier_date": 1783,
+        "order_delivered_customer_date": 2964,
+        "order_estimated_delivery_date": 0
+      },
+      "reasons": {
+        "before_purchase_order_delivered_carrier_date;": 166,
+        "delivery_before_dispatch;": 23
+      }
+    },
+    "order_items": {
+      "raw": 112650,
+      "accepted": 112413,
+      "quarantined": 237,
+      "nulls": {
+        "order_id": 0,
+        "order_item_id": 0,
+        "product_id": 0,
+        "seller_id": 0,
+        "shipping_limit_date": 0,
+        "price": 0,
+        "freight_value": 0
+      },
+      "reasons": {
+        "orphan_order_id;": 237
+      }
+    },
+    "order_payments": {
+      "raw": 103886,
+      "accepted": 103692,
+      "quarantined": 194,
+      "nulls": {
+        "order_id": 0,
+        "payment_sequential": 0,
+        "payment_type": 0,
+        "payment_installments": 0,
+        "payment_value": 0
+      },
+      "reasons": {
+        "orphan_order_id;": 194
+      }
+    },
+    "order_reviews": {
+      "raw": 99224,
+      "accepted": 99036,
+      "quarantined": 188,
+      "nulls": {
+        "review_id": 0,
+        "order_id": 0,
+        "review_score": 0,
+        "review_creation_date": 0,
+        "review_answer_timestamp": 0
+      },
+      "reasons": {
+        "orphan_order_id;": 188
+      }
+    }
+  },
+  "quarantined_rows": 808,
+  "source": {
+    "source": "https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce",
+    "attribution": "Olist and collaborators",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "mirror_commit": "21ede98d7bfe376b448672539b6157519aafdcae",
+    "acquired_utc": "2026-11-04T13:09:55.506514+00:00",
+    "files": [
+      {
+        "name": "olist_orders_dataset.csv",
+        "url": "https://raw.githubusercontent.com/anggid/Brazilian-E-Commerce-Public-Dataset-by-Olist/21ede98d7bfe376b448672539b6157519aafdcae/olist_orders_dataset.csv",
+        "sha256": "8df58ef3d2d7e9944010f7beecd9b75367f5588ec6e3c91cec19ae3345ef9ecf",
+        "bytes": 17654914
+      },
+      {
+        "name": "olist_order_items_dataset.csv",
+        "url": "https://raw.githubusercontent.com/anggid/Brazilian-E-Commerce-Public-Dataset-by-Olist/21ede98d7bfe376b448672539b6157519aafdcae/olist_order_items_dataset.csv",
+        "sha256": "0bc4d068c4fe38cbb01bd90e8746e3c613fe7b4baef75fab7b0e329701c3e279",
+        "bytes": 15438671
+      },
+      {
+        "name": "olist_customers_dataset.csv",
+        "url": "https://raw.githubusercontent.com/anggid/Brazilian-E-Commerce-Public-Dataset-by-Olist/21ede98d7bfe376b448672539b6157519aafdcae/olist_customers_dataset.csv",
+        "sha256": "983a422239e1712ded753b3bf9ecf47dc73f144d306029dcfa99e70a226883d2",
+        "bytes": 9033957
+      },
+      {
+        "name": "olist_sellers_dataset.csv",
+        "url": "https://raw.githubusercontent.com/anggid/Brazilian-E-Commerce-Public-Dataset-by-Olist/21ede98d7bfe376b448672539b6157519aafdcae/olist_sellers_dataset.csv",
+        "sha256": "1f643d2b950373b85735e7794b20986f528d7a000432e7c6f9bcbb44d0846a0e",
+        "bytes": 174703
+      },
+      {
+        "name": "olist_products_dataset.csv",
+        "url": "https://raw.githubusercontent.com/anggid/Brazilian-E-Commerce-Public-Dataset-by-Olist/21ede98d7bfe376b448672539b6157519aafdcae/olist_products_dataset.csv",
+        "sha256": "3e6569628a17fbc75fd206ee357b59e20364b9afa90f5b6cd5b4d624c58aa9cc",
+        "bytes": 2379446
+      },
+      {
+        "name": "olist_order_payments_dataset.csv",
+        "url": "https://raw.githubusercontent.com/anggid/Brazilian-E-Commerce-Public-Dataset-by-Olist/21ede98d7bfe376b448672539b6157519aafdcae/olist_order_payments_dataset.csv",
+        "sha256": "4f713964f2815dbbaa40b9488268c55aac3627bfce5aa96cf58d1f3616de3cc0",
+        "bytes": 5777138
+      },
+      {
+        "name": "olist_order_reviews_dataset.csv",
+        "url": "https://raw.githubusercontent.com/anggid/Brazilian-E-Commerce-Public-Dataset-by-Olist/21ede98d7bfe376b448672539b6157519aafdcae/olist_order_reviews_dataset.csv",
+        "sha256": "81336b6e5183133b632a3d9ed899428e33430987fa540926a6daa8b4a2157598",
+        "bytes": 14346950
+      }
+    ],
+    "local_import": null
+  },
+  "snapshot": "Unknown extraction timestamp; no credible historical open-order watchlist. Latest event is not a status-history snapshot.",
+  "watchlist_supported": false,
+  "timezone": "Naive source-local civil times; no timezone conversion; exact timezone undocumented.",
+  "checks": {
+    "order_grain_unique": true,
+    "accepted_order_count_preserved": true
+  },
+  "build_sql_sha256": "4f239171da4a6876fc65b775d7b754d4998b62cb98aa230198cc6a5b5ebf28bb"
+}

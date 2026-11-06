@@ -1,0 +1,5 @@
+// Create each table separately. No relationships for these controls.
+MinimumVolume = GENERATESERIES(1,1000,1)
+Improvement = GENERATESERIES(0,100,5)
+ScenarioRegion = DISTINCT(dim_geography[region])
+// dim_date is imported and contiguous; mark as date table.

@@ -1,0 +1,2 @@
+-- Dispatch is order-level carrier handoff; stage medians need not sum to total median.
+SELECT region,count(dispatch_days) AS dispatch_n,median(dispatch_days) AS median_dispatch_days,quantile_cont(dispatch_days,0.9) AS p90_dispatch_days,count(post_dispatch_days) AS post_dispatch_n,median(post_dispatch_days) AS median_post_dispatch_days,quantile_cont(post_dispatch_days,0.9) AS p90_post_dispatch_days FROM fact_order GROUP BY 1 ORDER BY post_dispatch_n DESC;

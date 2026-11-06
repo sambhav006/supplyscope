@@ -1,0 +1,3 @@
+Set-Location D:\SupplyScope
+Start-Process -FilePath 'D:\SupplyScope\.venv\Scripts\python.exe' -ArgumentList '-m','uvicorn','--app-dir','D:\SupplyScope','backend.app:app','--host','127.0.0.1','--port','8000' -WorkingDirectory 'D:\SupplyScope' -WindowStyle Hidden -RedirectStandardOutput 'D:\SupplyScope\reports\api.log' -RedirectStandardError 'D:\SupplyScope\reports\api-error.log'
+Start-Process -FilePath 'C:\Program Files\nodejs\node.exe' -ArgumentList 'D:\SupplyScope\frontend\node_modules\vite\bin\vite.js','--host','127.0.0.1' -WorkingDirectory 'D:\SupplyScope\frontend' -WindowStyle Hidden -RedirectStandardOutput 'D:\SupplyScope\reports\frontend.log' -RedirectStandardError 'D:\SupplyScope\reports\frontend-error.log'

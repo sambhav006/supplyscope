@@ -1,0 +1,68 @@
+{
+  "orders": 99252,
+  "eligible": 96282,
+  "on_time_count": 89750,
+  "late_count": 6532,
+  "delivered": 96290,
+  "delivered_unscorable": 8,
+  "delivered_missing_promise": 0,
+  "delivered_missing_actual": 8,
+  "canceled": 625,
+  "on_time_rate": 0.9321576203236327,
+  "late_rate": 0.06784237967636733,
+  "cancellation_rate": 0.006297102325393947,
+  "median_delivery_days": 10.227193287037036,
+  "p90_delivery_days": 23.10555671296297,
+  "median_delay_days": 7.0,
+  "p90_delay_days": 22.0,
+  "total_delay_days": 69385,
+  "freight_per_order": 22.81861520964286,
+  "freight_known_orders": 98477,
+  "median_promised_days": 23.23236111111111,
+  "median_actual_days": 10.227193287037036,
+  "median_early_margin": 12.0,
+  "median_dispatch_days": 2.207824074074074,
+  "median_post_dispatch_days": 7.100752314814815,
+  "status_distribution": [
+    {
+      "status": "delivered",
+      "orders": 96290
+    },
+    {
+      "status": "shipped",
+      "orders": 1106
+    },
+    {
+      "status": "canceled",
+      "orders": 625
+    },
+    {
+      "status": "unavailable",
+      "orders": 609
+    },
+    {
+      "status": "invoiced",
+      "orders": 314
+    },
+    {
+      "status": "processing",
+      "orders": 301
+    },
+    {
+      "status": "created",
+      "orders": 5
+    },
+    {
+      "status": "approved",
+      "orders": 2
+    }
+  ],
+  "filters": {
+    "start": null,
+    "end": null,
+    "basis": "purchase",
+    "region": null,
+    "seller": null,
+    "category": null
+  }
+}

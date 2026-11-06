@@ -1,0 +1,254 @@
+{
+  "fact_order": [
+    {
+      "column": "order_id",
+      "type": "VARCHAR"
+    },
+    {
+      "column": "status",
+      "type": "VARCHAR"
+    },
+    {
+      "column": "region",
+      "type": "VARCHAR"
+    },
+    {
+      "column": "purchase_at",
+      "type": "TIMESTAMP_NS"
+    },
+    {
+      "column": "purchase_date",
+      "type": "DATE"
+    },
+    {
+      "column": "approved_at",
+      "type": "TIMESTAMP_NS"
+    },
+    {
+      "column": "dispatched_at",
+      "type": "TIMESTAMP_NS"
+    },
+    {
+      "column": "delivered_at",
+      "type": "TIMESTAMP_NS"
+    },
+    {
+      "column": "delivery_date",
+      "type": "DATE"
+    },
+    {
+      "column": "promise_at",
+      "type": "TIMESTAMP_NS"
+    },
+    {
+      "column": "item_count",
+      "type": "BIGINT"
+    },
+    {
+      "column": "seller_count",
+      "type": "BIGINT"
+    },
+    {
+      "column": "single_seller_id",
+      "type": "VARCHAR"
+    },
+    {
+      "column": "origin",
+      "type": "VARCHAR"
+    },
+    {
+      "column": "lane",
+      "type": "VARCHAR"
+    },
+    {
+      "column": "freight_charged",
+      "type": "DECIMAL(38,2)"
+    },
+    {
+      "column": "eligible",
+      "type": "BOOLEAN"
+    },
+    {
+      "column": "on_time",
+      "type": "BOOLEAN"
+    },
+    {
+      "column": "late",
+      "type": "BOOLEAN"
+    },
+    {
+      "column": "delivery_days",
+      "type": "DOUBLE"
+    },
+    {
+      "column": "delay_days",
+      "type": "BIGINT"
+    },
+    {
+      "column": "promised_days",
+      "type": "DOUBLE"
+    },
+    {
+      "column": "early_margin_days",
+      "type": "BIGINT"
+    },
+    {
+      "column": "dispatch_days",
+      "type": "DOUBLE"
+    },
+    {
+      "column": "post_dispatch_days",
+      "type": "DOUBLE"
+    }
+  ],
+  "fact_item": [
+    {
+      "column": "order_id",
+      "type": "VARCHAR"
+    },
+    {
+      "column": "order_item_id",
+      "type": "BIGINT"
+    },
+    {
+      "column": "product_id",
+      "type": "VARCHAR"
+    },
+    {
+      "column": "seller_id",
+      "type": "VARCHAR"
+    },
+    {
+      "column": "category",
+      "type": "VARCHAR"
+    },
+    {
+      "column": "origin",
+      "type": "VARCHAR"
+    },
+    {
+      "column": "price",
+      "type": "DECIMAL(18,2)"
+    },
+    {
+      "column": "freight_value",
+      "type": "DECIMAL(18,2)"
+    },
+    {
+      "column": "shipping_limit_date",
+      "type": "TIMESTAMP_NS"
+    }
+  ],
+  "fact_payment": [
+    {
+      "column": "order_id",
+      "type": "VARCHAR"
+    },
+    {
+      "column": "payment_sequential",
+      "type": "BIGINT"
+    },
+    {
+      "column": "payment_type",
+      "type": "VARCHAR"
+    },
+    {
+      "column": "payment_installments",
+      "type": "BIGINT"
+    },
+    {
+      "column": "payment_value",
+      "type": "DOUBLE"
+    }
+  ],
+  "bridge_order_seller": [
+    {
+      "column": "order_id",
+      "type": "VARCHAR"
+    },
+    {
+      "column": "seller_id",
+      "type": "VARCHAR"
+    }
+  ],
+  "bridge_order_category": [
+    {
+      "column": "order_id",
+      "type": "VARCHAR"
+    },
+    {
+      "column": "category",
+      "type": "VARCHAR"
+    }
+  ],
+  "dim_seller": [
+    {
+      "column": "seller_id",
+      "type": "VARCHAR"
+    },
+    {
+      "column": "origin",
+      "type": "VARCHAR"
+    },
+    {
+      "column": "seller_city",
+      "type": "VARCHAR"
+    }
+  ],
+  "dim_category": [
+    {
+      "column": "category",
+      "type": "VARCHAR"
+    }
+  ],
+  "dim_geography": [
+    {
+      "column": "region",
+      "type": "VARCHAR"
+    }
+  ],
+  "dim_date": [
+    {
+      "column": "date",
+      "type": "DATE"
+    },
+    {
+      "column": "year",
+      "type": "BIGINT"
+    },
+    {
+      "column": "month",
+      "type": "BIGINT"
+    },
+    {
+      "column": "year_month",
+      "type": "VARCHAR"
+    },
+    {
+      "column": "week_start",
+      "type": "DATE"
+    }
+  ],
+  "fact_review": [
+    {
+      "column": "review_id",
+      "type": "VARCHAR"
+    },
+    {
+      "column": "order_id",
+      "type": "VARCHAR"
+    },
+    {
+      "column": "review_score",
+      "type": "BIGINT"
+    },
+    {
+      "column": "review_creation_date",
+      "type": "TIMESTAMP_NS"
+    },
+    {
+      "column": "review_answer_timestamp",
+      "type": "TIMESTAMP_NS"
+    }
+  ]
+}

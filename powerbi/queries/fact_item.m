@@ -1,0 +1,1 @@
+LoadTable("fact_item", {{"order_id", type text}, {"order_item_id", Int64.Type}, {"product_id", type text}, {"seller_id", type text}, {"category", type text}, {"origin", type text}, {"price", type number}, {"freight_value", type number}, {"shipping_limit_date", type datetime}})

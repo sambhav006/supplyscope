@@ -1,0 +1,98 @@
+[
+  {
+    "segment": "RJ",
+    "late_count": 1495,
+    "eligible": 12330,
+    "late_rate": 0.12124898621248986,
+    "baseline": 0.06784237967636733,
+    "priority_late_days": 20216,
+    "action": "Review dispatch handoffs and promise calibration for this destination; validate within seller and category before a pilot.",
+    "owner": "Regional operations lead",
+    "limitation": "Descriptive association; no carrier, cost or capacity data.",
+    "follow_up_kpi": "Reduce eligible late rate in the next comparable, fully observed purchase cohort without increasing promised lead time."
+  },
+  {
+    "segment": "BA",
+    "late_count": 395,
+    "eligible": 3252,
+    "late_rate": 0.12146371463714638,
+    "baseline": 0.06784237967636733,
+    "priority_late_days": 4755,
+    "action": "Review dispatch handoffs and promise calibration for this destination; validate within seller and category before a pilot.",
+    "owner": "Regional operations lead",
+    "limitation": "Descriptive association; no carrier, cost or capacity data.",
+    "follow_up_kpi": "Reduce eligible late rate in the next comparable, fully observed purchase cohort without increasing promised lead time."
+  },
+  {
+    "segment": "CE",
+    "late_count": 176,
+    "eligible": 1278,
+    "late_rate": 0.13771517996870108,
+    "baseline": 0.06784237967636733,
+    "priority_late_days": 2672,
+    "action": "Review dispatch handoffs and promise calibration for this destination; validate within seller and category before a pilot.",
+    "owner": "Regional operations lead",
+    "limitation": "Descriptive association; no carrier, cost or capacity data.",
+    "follow_up_kpi": "Reduce eligible late rate in the next comparable, fully observed purchase cohort without increasing promised lead time."
+  },
+  {
+    "segment": "SC",
+    "late_count": 291,
+    "eligible": 3534,
+    "late_rate": 0.08234295415959253,
+    "baseline": 0.06784237967636733,
+    "priority_late_days": 2419,
+    "action": "Review dispatch handoffs and promise calibration for this destination; validate within seller and category before a pilot.",
+    "owner": "Regional operations lead",
+    "limitation": "Descriptive association; no carrier, cost or capacity data.",
+    "follow_up_kpi": "Reduce eligible late rate in the next comparable, fully observed purchase cohort without increasing promised lead time."
+  },
+  {
+    "segment": "ES",
+    "late_count": 214,
+    "eligible": 1989,
+    "late_rate": 0.10759175465057819,
+    "baseline": 0.06784237967636733,
+    "priority_late_days": 2418,
+    "action": "Review dispatch handoffs and promise calibration for this destination; validate within seller and category before a pilot.",
+    "owner": "Regional operations lead",
+    "limitation": "Descriptive association; no carrier, cost or capacity data.",
+    "follow_up_kpi": "Reduce eligible late rate in the next comparable, fully observed purchase cohort without increasing promised lead time."
+  },
+  {
+    "segment": "PE",
+    "late_count": 153,
+    "eligible": 1592,
+    "late_rate": 0.09610552763819095,
+    "baseline": 0.06784237967636733,
+    "priority_late_days": 1831,
+    "action": "Review dispatch handoffs and promise calibration for this destination; validate within seller and category before a pilot.",
+    "owner": "Regional operations lead",
+    "limitation": "Descriptive association; no carrier, cost or capacity data.",
+    "follow_up_kpi": "Reduce eligible late rate in the next comparable, fully observed purchase cohort without increasing promised lead time."
+  },
+  {
+    "segment": "PA",
+    "late_count": 106,
+    "eligible": 945,
+    "late_rate": 0.11216931216931217,
+    "baseline": 0.06784237967636733,
+    "priority_late_days": 1359,
+    "action": "Review dispatch handoffs and promise calibration for this destination; validate within seller and category before a pilot.",
+    "owner": "Regional operations lead",
+    "limitation": "Descriptive association; no carrier, cost or capacity data.",
+    "follow_up_kpi": "Reduce eligible late rate in the next comparable, fully observed purchase cohort without increasing promised lead time."
+  },
+  {
+    "segment": "MA",
+    "late_count": 125,
+    "eligible": 714,
+    "late_rate": 0.17507002801120447,
+    "baseline": 0.06784237967636733,
+    "priority_late_days": 1313,
+    "action": "Review dispatch handoffs and promise calibration for this destination; validate within seller and category before a pilot.",
+    "owner": "Regional operations lead",
+    "limitation": "Descriptive association; no carrier, cost or capacity data.",
+    "follow_up_kpi": "Reduce eligible late rate in the next comparable, fully observed purchase cohort without increasing promised lead time."
+  }
+]

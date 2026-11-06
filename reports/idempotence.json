@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "table_count": 17,
+  "sha256": {
+    "bridge_order_category": "7d63b26f223355110e82f00554cde10cff4b46e22cea5c6bc22d7e44e0d81369",
+    "bridge_order_seller": "674e235503791b7e0099940b3066074d70a5b59da7919868e5961dd6b3ca3362",
+    "dim_category": "805a06c1952acb5643995017890feac528e985b00fd58787ba32b394559c4912",
+    "dim_date": "a66fac82bbf82b9ce7f2892086dbcadd9181a16c7240b844af347b4634a93d76",
+    "dim_geography": "4d257021b0161d88634c5e3fff469a15b40f32d59c6bdf88290e1de2012c8231",
+    "dim_seller": "a8ceac4f9dee4dacff31a944428a0002c99b453ee9e3c8d70f958ad22a565f3f",
+    "fact_item": "863358cc32f4b6c6332c77e3a1edc5a4669f610a890fb98fccb80ffba6a1479c",
+    "fact_order": "eab316dae89f05b3b0813fd300d465dfc472fda2ed8796c19a0c0354c83f62f9",
+    "fact_payment": "817c1bcd54de274fdb1130fb1a4a2e8b00a1911ab1fefe065c56c8ea418dd90e",
+    "fact_review": "e12100ddb8c723ff84b0ae648a2baa78fbbf288b2dde54509b31ba40584013f2",
+    "stg_customers": "f890197e26fae170845bcde37df0de9e198e4d75945475006947ff6ff0a1211e",
+    "stg_order_items": "c72875ac711ddd08515901b421f0efd883ba3c21941a7961767c5e1ca217d393",
+    "stg_order_payments": "817c1bcd54de274fdb1130fb1a4a2e8b00a1911ab1fefe065c56c8ea418dd90e",
+    "stg_order_reviews": "e12100ddb8c723ff84b0ae648a2baa78fbbf288b2dde54509b31ba40584013f2",
+    "stg_orders": "1d62e097dce7c3bb5f86066a1c2e3cd3f6c0461e1a8fb414aa878397bb45f661",
+    "stg_products": "0ff950f96770e7bcd11ed90ed5de38e45bec24686b4ebc70a128b02be0527855",
+    "stg_sellers": "8190161e9d16cb8d6fdb2e0010c2e094b21cf5e46d84f1f496e1619d964abfd6"
+  }
+}
